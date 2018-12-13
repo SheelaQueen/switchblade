@@ -1,4 +1,5 @@
 const { EventEmitter } = require('events')
+const Listening = require('./Listening.js')
 const moment = require('moment')
 
 module.exports = class Song extends EventEmitter {
@@ -7,6 +8,7 @@ module.exports = class Song extends EventEmitter {
 
     this.track = data.track
     this.requestedBy = requestedBy || data.requestedBy
+    this.listening = new Listening(this)
 
     this.identifier = data.info.identifier
     this.source = data.info.source
